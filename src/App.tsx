@@ -7,16 +7,17 @@ const DEFAULT_URL = 'https://alstom-ehs-metro-2/';
 const DEFAULT_LABEL = 'Plateforme EHS — Accueil';
 
 export default function App() {
-  const [url, setUrl] = useState(DEFAULT_URL);
-  const [label, setLabel] = useState(DEFAULT_LABEL);
+  const [inputUrl, setInputUrl] = useState('');
+  const [inputLabel, setInputLabel] = useState('');
   const [applied, setApplied] = useState(false);
-  const [liveUrl, setLiveUrl] = useState(DEFAULT_URL);
-  const [liveLabel, setLiveLabel] = useState(DEFAULT_LABEL);
+  const [qrUrl, setQrUrl] = useState(DEFAULT_URL);
+  const [qrLabel, setQrLabel] = useState(DEFAULT_LABEL);
 
   function handleApply() {
-    if (!url.trim()) return;
-    setLiveUrl(url.trim());
-    setLiveLabel(label.trim() || DEFAULT_LABEL);
+    const finalUrl = inputUrl.trim() || DEFAULT_URL;
+    const finalLabel = inputLabel.trim() || DEFAULT_LABEL;
+    setQrUrl(finalUrl);
+    setQrLabel(finalLabel);
     setApplied(true);
     setTimeout(() => setApplied(false), 2000);
   }
@@ -72,8 +73,8 @@ export default function App() {
                 </label>
                 <input
                   type="url"
-                  value={url}
-                  onChange={(e) => setUrl(e.target.value)}
+                  value={inputUrl}
+                  onChange={(e) => setInputUrl(e.target.value)}
                   placeholder="https://votre-plateforme.com"
                   className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#0F5CA3] focus:outline-none text-sm text-[#003057] font-medium transition-colors"
                 />
@@ -85,8 +86,8 @@ export default function App() {
                 </label>
                 <input
                   type="text"
-                  value={label}
-                  onChange={(e) => setLabel(e.target.value)}
+                  value={inputLabel}
+                  onChange={(e) => setInputLabel(e.target.value)}
                   placeholder="Ex: Plateforme EHS — Accueil"
                   className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-[#0F5CA3] focus:outline-none text-sm text-[#003057] font-medium transition-colors"
                 />
@@ -113,8 +114,8 @@ export default function App() {
                       const target = p.path.startsWith('http')
                         ? p.path
                         : DEFAULT_URL + p.path;
-                      setUrl(target);
-                      setLabel(p.label);
+                      setInputUrl(target);
+                      setInputLabel(p.label);
                     }}
                     className="text-left px-3 py-2.5 rounded-lg border-2 border-gray-100 hover:border-[#0F5CA3] hover:bg-[#EEF4FA] transition-all group"
                   >
@@ -139,7 +140,7 @@ export default function App() {
           </div>
 
           <div className="flex flex-col items-center">
-            <QRDisplay url={liveUrl} label={liveLabel} />
+            <QRDisplay url={qrUrl} label={qrLabel} />
 
             <div className="mt-6 w-full max-w-sm">
               <div className="bg-white rounded-xl border border-gray-100 p-4 shadow-sm">
