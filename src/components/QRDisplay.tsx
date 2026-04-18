@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useMemo, memo } from 'react';
 import { Download, Printer, RefreshCw, CheckCircle, Link } from 'lucide-react';
 
 interface QRDisplayProps {
@@ -10,12 +10,12 @@ function buildQRUrl(url: string, size: number) {
   return `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(url)}&color=003057&bgcolor=FFFFFF&qzone=1&format=png`;
 }
 
-export default function QRDisplay({ url, label }: QRDisplayProps) {
+const QRDisplay = memo(function QRDisplay({ url, label }: QRDisplayProps) {
   const [copied, setCopied] = useState(false);
   const printRef = useRef<HTMLDivElement>(null);
 
-  const qrSrc = buildQRUrl(url, 300);
-  const qrLargeSrc = buildQRUrl(url, 600);
+  const qrSrc = useMemo(() => buildQRUrl(url, 300), [url]);
+  const qrLargeSrc = useMemo(() => buildQRUrl(url, 600), [url]);
 
   function handleCopy() {
     navigator.clipboard.writeText(url).then(() => {
@@ -115,3 +115,6 @@ export default function QRDisplay({ url, label }: QRDisplayProps) {
     </div>
   );
 }
+);
+
+export default QRDisplay;

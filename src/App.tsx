@@ -1,9 +1,9 @@
+import { Globe, Info, ShieldCheck } from 'lucide-react';
 import { useState } from 'react';
 import Header from './components/Header';
 import QRDisplay from './components/QRDisplay';
-import { Globe, ShieldCheck, Info } from 'lucide-react';
 
-const DEFAULT_URL = 'https://alstom-ehs-metro-2/';
+const DEFAULT_URL = 'https://resonant-newspaper.localsite.io/accueil';
 const DEFAULT_LABEL = 'Plateforme EHS — Accueil';
 
 export default function App() {
