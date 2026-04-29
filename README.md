@@ -73,6 +73,3 @@ npm run build
 - Pour que le QR code fonctionne sur mobile, l'URL doit pointer vers un site accessible publiquement (pas une adresse locale).
 - Le projet ne stocke aucune donnée : tout se passe côté navigateur.
 
-## Auteur
-
-Développé par Kassinne Bie (2026)

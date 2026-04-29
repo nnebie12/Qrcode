@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Header from './components/Header';
 import QRDisplay from './components/QRDisplay';
 
-const DEFAULT_URL = 'https://resonant-newspaper.localsite.io/accueil';
+const DEFAULT_URL = 'https://resonant-newspaper.localsite.io';
 const DEFAULT_LABEL = 'Plateforme EHS — Accueil';
 
 export default function App() {
